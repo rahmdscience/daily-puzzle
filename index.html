@@ -1379,6 +1379,71 @@
             hints: ["Lihat ejaan.", "Huruf di tengah kata.", "Bukan tanggal."],
             answer: "huruf r",
           },
+          {
+            id: 50,
+            cat: "Pemecahan Masalah",
+            diff: "Sedang",
+            question:
+              "Seorang petani membawa serigala, kambing, dan kubis ke sungai. Perahu hanya muat petani dan satu bawaan. Jika ditinggal, serigala memakan kambing, dan kambing memakan kubis. Bawaan apa yang harus diseberangkan pertama kali oleh sang petani?",
+            hints: [
+              "Predator dan mangsa tidak boleh ditinggal berduaan.",
+              "Serigala tidak doyan makan kubis.",
+              "Pikirkan siapa yang jadi ancaman sekaligus terancam.",
+            ],
+            answer: "kambing",
+          },
+          {
+            id: 51,
+            cat: "Pemecahan Masalah",
+            diff: "Sedang",
+            question:
+              "Lima orang detektif bertemu di sebuah ruangan rahasia. Jika mereka semua saling berjabat tangan satu sama lain tepat satu kali untuk bersepakat, berapa total jabat tangan yang terjadi di ruangan itu? (Jawab menggunakan ejaan huruf)",
+            hints: [
+              "Detektif A menjabat tangan 4 orang lainnya.",
+              "Detektif B menjabat 3 orang sisanya (karena sudah dengan A).",
+              "Gunakan logika pola pertambahan: 4 + 3 + ...",
+            ],
+            answer: "sepuluh",
+          },
+          {
+            id: 52,
+            cat: "Pemecahan Masalah",
+            diff: "Sulit",
+            question:
+              "Seekor siput terjebak di dasar sumur sedalam 10 meter. Tiap siang hari ia memanjat naik 3 meter, namun tiap malam saat tidur ia merosot 2 meter. Pada hari ke berapakah ia berhasil mencapai bibir sumur? (Jawab menggunakan ejaan huruf)",
+            hints: [
+              "Jangan sekadar menghitung 1 meter per hari.",
+              "Pertimbangkan saat ia mencapai bibir sumur di siang hari, ia tidak akan merosot lagi.",
+              "Pada pagi hari ke-7, ia berada di ketinggian 7 meter.",
+            ],
+            answer: "delapan",
+          },
+          {
+            id: 53,
+            cat: "Pemecahan Masalah",
+            diff: "Sulit",
+            question:
+              "Terdapat 9 koin emas, 1 di antaranya palsu dan berbobot lebih ringan. Berapa kali penimbangan paling sedikit menggunakan timbangan keseimbangan lengan untuk pasti menemukan koin palsu tersebut? (Jawab menggunakan ejaan huruf)",
+            hints: [
+              "Membaginya menjadi dua kelompok bukanlah cara tercepat.",
+              "Bagilah menjadi tiga kelompok (3, 3, dan 3 koin).",
+              "Timbang dua kelompok pertama terlebih dahulu. Jika seimbang, yang palsu ada di kelompok ketiga.",
+            ],
+            answer: "dua",
+          },
+          {
+            id: 54,
+            cat: "Pemecahan Masalah",
+            diff: "Mudah",
+            question:
+              "Sebuah sel amuba ajaib membelah diri menjadi dua setiap menit. Dibutuhkan waktu tepat 60 menit bagi amuba untuk berkembang biak memenuhi seluruh toples. Pada menit ke berapakah toples tersebut terisi tepat setengahnya? (Jawab menggunakan ejaan huruf)",
+            hints: [
+              "Jangan berasumsi setengah volume berarti setengah waktu.",
+              "Pikirkan kecepatan pertumbuhan eksponensial.",
+              "Jika membelah dua tiap menit, maka 1 menit sebelum penuh, volumenya adalah separuh.",
+            ],
+            answer: "lima puluh sembilan",
+          },
         ];
 
         // --- SISTEM SUARA & TEMA ---
@@ -1546,7 +1611,8 @@
           let normAns = normalizeStr(correctAnswer);
           if (normIn === normAns) return true;
           if (normAns.length > 5 && normIn.includes(normAns)) return true;
-          let tolerance = normAns.length <= 5 ? 1 : 2;
+          // Perketat toleransi typo untuk jawaban yang sangat pendek (mencegah salah tebak angka/kata pendek)
+          let tolerance = normAns.length <= 3 ? 0 : normAns.length <= 5 ? 1 : 2;
           return levenshtein(normIn, normAns) <= tolerance;
         }
 
