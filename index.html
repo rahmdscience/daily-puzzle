@@ -2,80 +2,31 @@
 <html lang="id">
   <head>
     <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
-    />
-    <title>Puzzle Misteri Harian - Kasus Klasik</title>
-
-    <!-- PWA Meta Tags -->
-    <meta name="theme-color" content="#f4f1ea" id="theme-color-meta" />
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta
-      name="apple-mobile-web-app-status-bar-style"
-      content="black-translucent"
-    />
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Puzzle Misteri Harian - Edisi Modern</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap"
       rel="stylesheet"
     />
-
     <style>
       :root {
-        /* Tema Terang (Berkas Kertas Klasik / Neo-Brutalist) */
-        --bg-color: #f4f1ea;
-        --container-bg: #faf8f5;
-        --primary-text-color: #1a1a1a;
-        --secondary-text-color: #5c5c5c;
-        --accent-color: #9e2a2b; /* Tinta merah stempel */
-        --accent-hover: #540b0e;
-        --border-color: #1a1a1a; /* Tinta hitam tegas */
-        --disabled-color: #e0ddd6;
-        --disabled-text: #999999;
-        --success-color: #386641;
-        --error-color: #bc4749;
-        --badge-easy: #6a994e;
-        --badge-med: #e29578;
-        --badge-hard: #d62828;
-        --modal-bg: rgba(26, 26, 26, 0.85);
-        --stats-bg: #eae6df;
-        --card-shadow: 6px 6px 0px var(--border-color); /* Bayangan solid/brutalist */
-        --dot-pattern: #dcd7ce;
-
-        --font-ui: "Courier Prime", monospace;
-        --font-text: "Crimson Text", serif;
-      }
-
-      /* Mode Gelap (Berkas Negatif / Dark Room) */
-      body.dark-mode {
-        --bg-color: #121212;
-        --container-bg: #1e1e1e;
-        --primary-text-color: #e8e6e3;
-        --secondary-text-color: #a09e9b;
-        --accent-color: #c14a4d;
-        --accent-hover: #e56b6f;
-        --border-color: #e8e6e3;
-        --disabled-color: #333333;
-        --disabled-text: #777777;
-        --success-color: #52b788;
-        --error-color: #e63946;
-        --modal-bg: rgba(0, 0, 0, 0.9);
-        --stats-bg: #2b2b2b;
-        --card-shadow: 6px 6px 0px var(--border-color);
-        --dot-pattern: #2b2b2b;
+        --bg-color: #f4f7f9;
+        --container-bg: #ffffff;
+        --primary-text-color: #212529;
+        --secondary-text-color: #6c757d;
+        --accent-blue: #007bff;
+        --accent-blue-dark: #0056b3;
+        --border-color: #dee2e6;
+        --disabled-color: #e9ecef;
+        --success-color: #28a745;
+        --error-color: #dc3545;
       }
 
       body {
-        font-family: var(--font-ui);
+        font-family: "Poppins", sans-serif;
         background-color: var(--bg-color);
-        background-image: radial-gradient(
-          var(--dot-pattern) 1.5px,
-          transparent 1.5px
-        );
-        background-size: 25px 25px;
         color: var(--primary-text-color);
         display: flex;
         flex-direction: column;
@@ -85,274 +36,140 @@
         margin: 0;
         padding: 20px;
         box-sizing: border-box;
-        transition:
-          background-color 0.2s,
-          color 0.2s;
-      }
-
-      /* Top Navigation Bar */
-      .top-nav {
-        width: 100%;
-        max-width: 750px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 20px;
-      }
-
-      .icon-btn {
-        background: var(--container-bg);
-        border: 2px solid var(--border-color);
-        color: var(--primary-text-color);
-        border-radius: 0; /* Sudut tajam */
-        width: 44px;
-        height: 44px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
-        font-size: 1.2em;
-        transition: all 0.1s;
-        box-shadow: 3px 3px 0px var(--border-color);
-      }
-      .icon-btn:hover {
-        transform: translate(2px, 2px);
-        box-shadow: 1px 1px 0px var(--border-color);
-      }
-      .icon-btn:active {
-        transform: translate(3px, 3px);
-        box-shadow: 0px 0px 0px var(--border-color);
-      }
-      .nav-group {
-        display: flex;
-        gap: 12px;
       }
 
       .container {
         width: 100%;
         max-width: 750px;
         background-color: var(--container-bg);
-        border: 3px solid var(--border-color);
-        border-radius: 0;
+        border: 1px solid var(--border-color);
+        border-radius: 20px;
         padding: 40px;
-        box-shadow: var(--card-shadow);
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
         text-align: center;
-        position: relative;
-        transition: all 0.3s ease;
+        animation: fadeIn 1s ease-in-out;
       }
 
-      /* Garis dekoratif atas ala dokumen resmi */
-      .container::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 4px;
-        background: var(--border-color);
-      }
-      .container::after {
-        content: "";
-        position: absolute;
-        top: 8px;
-        left: 0;
-        right: 0;
-        height: 1px;
-        background: var(--border-color);
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: scale(0.98);
+        }
+        to {
+          opacity: 1;
+          transform: scale(1);
+        }
       }
 
       h1 {
-        font-family: var(--font-text);
+        font-family: "Poppins", sans-serif;
         font-weight: 700;
-        margin: 10px 0 5px 0;
+        color: var(--primary-text-color);
+        margin-top: 0;
+        margin-bottom: 0;
         font-size: 2.8em;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        line-height: 1.1;
       }
 
       .watermark {
-        display: inline-block;
-        font-family: var(--font-ui);
-        font-size: 0.8em;
-        font-weight: 700;
+        display: block;
+        font-size: 0.9em;
         color: var(--secondary-text-color);
         text-decoration: none;
-        margin-bottom: 25px;
-        text-transform: uppercase;
-        letter-spacing: 2px;
-      }
-
-      .badges-container {
-        display: flex;
-        justify-content: center;
-        gap: 10px;
+        margin-top: -5px;
         margin-bottom: 20px;
+        transition: color 0.3s ease;
       }
 
-      .badge {
-        font-family: var(--font-ui);
-        font-size: 0.7em;
-        font-weight: 700;
-        padding: 4px 10px;
-        border: 1.5px solid var(--border-color);
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        color: var(--primary-text-color);
-        background-color: var(--container-bg);
-        box-shadow: 2px 2px 0px var(--border-color);
-      }
-
-      .badge-easy {
-        border-color: var(--badge-easy);
-        color: var(--badge-easy);
-      }
-      .badge-med {
-        border-color: var(--badge-med);
-        color: var(--badge-med);
-      }
-      .badge-hard {
-        border-color: var(--badge-hard);
-        color: var(--badge-hard);
-      }
-      body.dark-mode .badge-easy {
-        box-shadow: 2px 2px 0px var(--badge-easy);
-      }
-      body.dark-mode .badge-med {
-        box-shadow: 2px 2px 0px var(--badge-med);
-      }
-      body.dark-mode .badge-hard {
-        box-shadow: 2px 2px 0px var(--badge-hard);
+      .watermark:hover {
+        color: var(--accent-blue);
       }
 
       #puzzle-counter {
-        color: var(--accent-color);
-        font-size: 1.1em;
+        color: var(--accent-blue);
+        font-size: 1.5em;
         margin-bottom: 20px;
-        font-weight: 700;
-        text-transform: uppercase;
-        letter-spacing: 2px;
-        border-bottom: 2px dashed var(--border-color);
-        display: inline-block;
-        padding-bottom: 5px;
+        font-weight: 600;
       }
 
       .stats-container {
         display: flex;
-        justify-content: space-between;
+        justify-content: space-around;
         margin-bottom: 30px;
-        border: 2px solid var(--border-color);
-        background-color: var(--stats-bg);
-        box-shadow: 4px 4px 0px var(--border-color);
+        flex-wrap: wrap;
+        gap: 15px;
+        border-bottom: 1px solid var(--border-color);
+        padding-bottom: 25px;
       }
 
       .stat {
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        padding: 15px 10px;
-        border-right: 2px solid var(--border-color);
-      }
-      .stat:last-child {
-        border-right: none;
+        font-size: 1.8em;
+        font-weight: 700;
+        color: var(--primary-text-color);
       }
 
-      .stat span:first-child {
-        font-family: var(--font-text);
-        font-size: 2em;
-        font-weight: 700;
-        line-height: 1;
-      }
       .stat-label {
         color: var(--secondary-text-color);
-        font-size: 0.7em;
-        font-weight: 700;
+        display: block;
+        font-size: 0.6em;
+        font-weight: 600;
         text-transform: uppercase;
-        margin-top: 5px;
         letter-spacing: 1px;
+        margin-top: 5px;
       }
 
       #puzzle-area {
         min-height: 120px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 20px 0;
       }
 
       #puzzle-question {
-        font-family: var(--font-text);
-        font-size: 1.6em;
-        line-height: 1.5;
+        font-size: 1.4em;
+        line-height: 1.7;
+        margin-bottom: 25px;
+        color: var(--primary-text-color);
         white-space: pre-wrap;
-        margin: 0;
-        text-align: left;
       }
 
       .typing-cursor {
         display: inline-block;
-        width: 10px;
-        height: 1.1em;
-        background-color: var(--accent-color);
+        width: 8px;
+        height: 1.4em;
+        background-color: var(--accent-blue);
         margin-left: 4px;
-        vertical-align: bottom;
         animation: blink-caret 1s step-end infinite;
       }
+
       @keyframes blink-caret {
+        from,
+        to {
+          background-color: transparent;
+        }
         50% {
-          opacity: 0;
+          background-color: var(--accent-blue);
         }
       }
 
       #answer-input {
-        width: 100%;
-        max-width: 500px;
-        padding: 16px;
-        font-family: var(--font-ui);
-        background-color: var(--container-bg);
-        border: 2px solid var(--border-color);
+        width: calc(100% - 24px);
+        padding: 14px;
+        font-family: "Poppins", sans-serif;
+        background-color: #f8f9fa;
+        border: 1px solid var(--border-color);
         color: var(--primary-text-color);
+        border-radius: 10px;
         font-size: 1.1em;
         margin-bottom: 20px;
-        margin-top: 10px;
-        transition: all 0.1s;
-        box-sizing: border-box;
-        box-shadow: inset 4px 4px 0px rgba(0, 0, 0, 0.05);
+        transition: all 0.3s ease;
       }
-      body.dark-mode #answer-input {
-        box-shadow: inset 4px 4px 0px rgba(0, 0, 0, 0.5);
-      }
+
       #answer-input:focus {
         outline: none;
-        border-color: var(--accent-color);
+        box-shadow: 0 0 0 4px rgba(0, 123, 255, 0.15);
+        border-color: var(--accent-blue);
       }
+
       #answer-input:disabled {
         background-color: var(--disabled-color);
-        color: var(--disabled-text);
-        border-style: dashed;
-      }
-      .shake {
-        animation: shake 0.4s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
-      }
-      @keyframes shake {
-        10%,
-        90% {
-          transform: translate3d(-1px, 0, 0);
-        }
-        20%,
-        80% {
-          transform: translate3d(2px, 0, 0);
-        }
-        30%,
-        50%,
-        70% {
-          transform: translate3d(-4px, 0, 0);
-        }
-        40%,
-        60% {
-          transform: translate3d(4px, 0, 0);
-        }
+        cursor: not-allowed;
       }
 
       .button-group {
@@ -363,93 +180,100 @@
       }
 
       .button {
-        padding: 12px 24px;
-        font-family: var(--font-ui);
-        font-weight: 700;
-        font-size: 0.9em;
-        text-transform: uppercase;
+        padding: 12px 25px;
+        font-family: "Poppins", sans-serif;
+        font-weight: 600;
+        font-size: 1em;
         cursor: pointer;
-        border: 2px solid var(--border-color);
-        background-color: var(--container-bg);
-        color: var(--primary-text-color);
-        transition: all 0.1s;
-        box-shadow: 4px 4px 0px var(--border-color);
-      }
-
-      #submit-button {
-        background-color: var(--border-color);
-        color: var(--bg-color);
+        border: none;
+        background-color: var(--accent-blue);
+        color: #fff;
+        border-radius: 10px;
+        transition: all 0.3s ease;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
       }
 
       .button:hover:not(:disabled) {
-        transform: translate(2px, 2px);
-        box-shadow: 2px 2px 0px var(--border-color);
+        background-color: var(--accent-blue-dark);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 15px rgba(0, 123, 255, 0.2);
       }
-      .button:active:not(:disabled) {
-        transform: translate(4px, 4px);
-        box-shadow: 0px 0px 0px var(--border-color);
+
+      #hint-button,
+      #archive-button {
+        background-color: #e9ecef;
+        color: var(--primary-text-color);
+      }
+
+      #hint-button:hover:not(:disabled),
+      #archive-button:hover:not(:disabled) {
+        background-color: #d8dde1;
       }
 
       .button:disabled {
         background-color: var(--disabled-color);
-        color: var(--disabled-text);
+        color: #999;
         cursor: not-allowed;
+        transform: none;
         box-shadow: none;
-        transform: translate(4px, 4px);
       }
 
       #next-puzzle-button {
-        background-color: var(--accent-color);
-        color: var(--bg-color);
-        border-color: var(--accent-color);
-        box-shadow: 4px 4px 0px var(--border-color);
-      }
-      #next-puzzle-button:hover:not(:disabled) {
-        background-color: var(--accent-hover);
+        background-color: var(--success-color);
       }
 
-      .btn-share {
-        background-color: var(--success-color);
-        color: var(--bg-color);
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        padding: 14px 28px;
-        margin: 20px auto;
-        border-color: var(--success-color);
+      #next-puzzle-button:hover:not(:disabled) {
+        background-color: #218838;
       }
 
       #hints-area {
-        margin-top: 30px;
+        margin-top: 25px;
         text-align: left;
+        min-height: 150px;
       }
+
       .hint {
-        background-color: var(--bg-color);
-        padding: 12px 16px;
-        border: 2px dashed var(--border-color);
-        border-left: 6px solid var(--accent-color);
-        margin-bottom: 12px;
+        background-color: rgba(0, 123, 255, 0.05);
+        padding: 12px;
+        border-left: 3px solid var(--accent-blue);
+        margin-bottom: 10px;
+        border-radius: 8px;
         display: none;
-        font-size: 0.95em;
-        line-height: 1.5;
+        animation: fadeInHint 0.5s ease;
+      }
+
+      @keyframes fadeInHint {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
       }
 
       #feedback-area {
         margin-top: 20px;
-        font-size: 1.1em;
-        font-weight: 700;
-        min-height: 25px;
-        text-transform: uppercase;
-        letter-spacing: 1px;
+        font-size: 1.2em;
+        font-weight: 600;
+        min-height: 30px;
       }
-      .success {
+
+      #feedback-area.success {
         color: var(--success-color);
       }
-      .error {
+      #feedback-area.error {
         color: var(--error-color);
       }
 
-      /* Modals */
+      #countdown-timer,
+      #comeback-message {
+        margin-top: 25px;
+        font-size: 1.2em;
+        color: var(--accent-blue);
+        font-weight: 600;
+      }
+
       .modal {
         display: none;
         position: fixed;
@@ -459,193 +283,96 @@
         width: 100%;
         height: 100%;
         overflow: auto;
-        background-color: var(--modal-bg);
+        background-color: rgba(0, 0, 0, 0.5);
+        backdrop-filter: blur(5px);
       }
+
       .modal-content {
         background-color: var(--container-bg);
-        margin: 8% auto;
-        padding: 40px;
-        border: 4px solid var(--border-color);
+        margin: 10% auto;
+        padding: 30px;
+        border: none;
+        border-radius: 20px;
         width: 90%;
         max-width: 600px;
-        box-shadow: 12px 12px 0px rgba(0, 0, 0, 1);
-      }
-      body.dark-mode .modal-content {
-        box-shadow: 12px 12px 0px #000;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
       }
 
       .modal-header {
+        font-family: "Poppins", sans-serif;
+        font-weight: 700;
         display: flex;
         justify-content: space-between;
         align-items: center;
-        border-bottom: 3px solid var(--border-color);
+        border-bottom: 1px solid var(--border-color);
         padding-bottom: 15px;
-        margin-bottom: 25px;
+        margin-bottom: 20px;
       }
-      .modal-header h2 {
-        font-family: var(--font-text);
-        font-size: 2em;
-        margin: 0;
-        text-transform: uppercase;
-      }
+
       .close-button {
-        color: var(--primary-text-color);
-        font-size: 32px;
+        color: #999;
+        font-size: 28px;
         font-weight: bold;
         cursor: pointer;
-        transition: 0.1s;
-      }
-      .close-button:hover {
-        color: var(--accent-color);
       }
 
-      .recap-grid {
-        display: grid;
-        grid-template-columns: repeat(5, 1fr);
-        gap: 12px;
-        margin: 25px 0;
-      }
-      .recap-box {
-        aspect-ratio: 1;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 1.6em;
-        color: var(--bg-color);
-        font-weight: bold;
-        border: 2px solid var(--border-color);
-        box-shadow: 3px 3px 0px var(--border-color);
-      }
-      .box-correct {
-        background-color: var(--success-color);
-      }
-      .box-hint {
-        background-color: var(--badge-med);
-      }
-      .box-wrong {
-        background-color: var(--error-color);
+      #archive-list {
+        list-style-type: none;
+        padding: 0;
       }
 
-      /* Achievement Styles */
-      .achievements-list {
-        display: grid;
-        gap: 15px;
-        text-align: left;
+      .archive-day {
+        background: #f8f9fa;
+        margin-bottom: 15px;
+        padding: 15px;
+        border-radius: 10px;
+        border: 1px solid var(--border-color);
       }
-      .achievement-card {
-        display: flex;
-        align-items: center;
-        gap: 20px;
-        padding: 20px;
-        background: var(--bg-color);
-        border: 2px solid var(--border-color);
-        opacity: 0.5;
-        filter: grayscale(1);
-        transition: all 0.2s;
+      .archive-day-header {
+        font-weight: 600;
+        color: var(--accent-blue);
+        margin-bottom: 10px;
       }
-      .achievement-card.unlocked {
-        opacity: 1;
-        filter: none;
-        box-shadow: 4px 4px 0px var(--border-color);
-      }
-      .ach-icon {
-        font-size: 2.5em;
-      }
-      .ach-text h3 {
-        margin: 0 0 5px 0;
-        font-family: var(--font-text);
-        font-size: 1.4em;
-      }
-      .ach-text p {
-        margin: 0;
-        font-size: 0.85em;
-        color: var(--secondary-text-color);
-      }
-
-      /* Custom Scrollbar for brutalism */
-      ::-webkit-scrollbar {
-        width: 12px;
-      }
-      ::-webkit-scrollbar-track {
-        background: var(--bg-color);
+      .archive-puzzle {
+        margin-left: 15px;
+        padding-left: 15px;
         border-left: 2px solid var(--border-color);
+        margin-bottom: 10px;
       }
-      ::-webkit-scrollbar-thumb {
-        background: var(--border-color);
-        border: 2px solid var(--bg-color);
+      .archive-question {
+        font-weight: 600;
+        color: var(--primary-text-color);
       }
-
-      @media (max-width: 600px) {
-        .container {
-          padding: 25px 20px;
-        }
-        h1 {
-          font-size: 2.2em;
-        }
-        .button {
-          width: 100%;
-          box-shadow: 3px 3px 0px var(--border-color);
-        }
-        .button:hover:not(:disabled) {
-          transform: translate(1px, 1px);
-          box-shadow: 2px 2px 0px var(--border-color);
-        }
-        .nav-group {
-          gap: 8px;
-        }
-        .stats-container {
-          flex-direction: column;
-        }
-        .stat {
-          border-right: none;
-          border-bottom: 2px solid var(--border-color);
-        }
-        .stat:last-child {
-          border-bottom: none;
-        }
+      .archive-answer {
+        color: var(--success-color);
+        margin-top: 5px;
       }
     </style>
   </head>
   <body>
-    <div class="top-nav">
-      <button class="icon-btn" id="achievements-btn" title="Pencapaian">
-        🏆
-      </button>
-      <div class="nav-group">
-        <button class="icon-btn" id="sound-toggle-btn" title="Matikan Suara">
-          🔊
-        </button>
-        <button class="icon-btn" id="theme-toggle-btn" title="Mode Gelap">
-          🌙
-        </button>
-        <button class="icon-btn" id="features-btn" title="Fitur Komunitas">
-          🌐
-        </button>
-      </div>
-    </div>
-
     <div class="container">
-      <h1>Misteri Harian</h1>
-      <div class="watermark">Berkas Rahasia // Rahmad Sains</div>
-
-      <div class="badges-container" id="puzzle-badges">
-        <!-- Badges injected here -->
-      </div>
-
-      <div id="puzzle-counter">Memuat Kasus...</div>
+      <h1>Puzzle Misteri Harian</h1>
+      <a
+        href="https://www.instagram.com/rahmdsai"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="watermark"
+        >Created by Rahmad Sains</a
+      >
+      <h2 id="puzzle-counter"></h2>
 
       <div class="stats-container">
         <div class="stat">
           <span id="weekly-score">0</span>
-          <span class="stat-label">Skor Total</span>
+          <span class="stat-label">Skor Mingguan</span>
         </div>
         <div class="stat">
           <span id="streak">0</span>
-          <span class="stat-label">Runtutan Hari</span>
+          <span class="stat-label">Streak Harian</span>
         </div>
         <div class="stat">
           <span id="daily-score">0</span>
-          <span class="stat-label">Skor Kasus Ini</span>
+          <span class="stat-label">Skor Puzzle Ini</span>
         </div>
       </div>
 
@@ -657,15 +384,15 @@
         <input
           type="text"
           id="answer-input"
-          placeholder="> Ketik deduksi jawabanmu..."
-          autocomplete="off"
-          spellcheck="false"
+          placeholder="Ketik jawabanmu di sini..."
         />
         <div class="button-group">
-          <button id="submit-button" class="button">Ajukan Jawaban</button>
-          <button id="hint-button" class="button">Petunjuk (-15)</button>
+          <button id="submit-button" class="button">Kirim Jawaban</button>
+          <button id="hint-button" class="button">
+            Minta Petunjuk (-15 Poin)
+          </button>
           <button id="next-puzzle-button" class="button" style="display: none">
-            Kasus Berikutnya
+            Lanjut ke Misteri Berikutnya
           </button>
         </div>
       </div>
@@ -676,778 +403,693 @@
         <div id="hint-1" class="hint"></div>
         <div id="hint-2" class="hint"></div>
         <div id="hint-3" class="hint"></div>
+        <div id="hint-4" class="hint"></div>
+        <div id="hint-5" class="hint"></div>
       </div>
+
+      <div id="countdown-timer"></div>
+      <div id="comeback-message" style="display: none"></div>
 
       <div
         style="
-          margin-top: 35px;
-          border-top: 2px dashed var(--border-color);
+          margin-top: 25px;
+          border-top: 1px solid var(--border-color);
           padding-top: 25px;
         "
       >
-        <button id="archive-button" class="button" style="padding: 10px 20px">
-          [ Buka Arsip Kasus ]
-        </button>
+        <button id="archive-button" class="button">Buka Arsip</button>
       </div>
     </div>
 
-    <!-- Modal End of Day -->
-    <div id="end-modal" class="modal">
-      <div class="modal-content" style="text-align: center">
-        <h2
-          style="
-            font-family: var(--font-text);
-            font-size: 2.2em;
-            text-transform: uppercase;
-            border-bottom: 3px solid var(--border-color);
-            padding-bottom: 10px;
-            margin-top: 0;
-          "
-        >
-          Status Investigasi
-        </h2>
-        <div class="recap-grid" id="recap-grid"></div>
-        <p
-          id="end-message"
-          style="margin-bottom: 25px; font-size: 1.1em; line-height: 1.6"
-        ></p>
-        <button id="share-button" class="button btn-share">
-          Salin Laporan 📋
-        </button>
-        <p
-          id="countdown-timer"
-          style="
-            font-weight: bold;
-            margin-top: 25px;
-            border: 2px solid var(--border-color);
-            padding: 10px;
-            background: var(--bg-color);
-          "
-        ></p>
-      </div>
-    </div>
-
-    <!-- Modal Achievements -->
-    <div id="achievements-modal" class="modal">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h2>Medali Jasa</h2>
-          <span
-            class="close-button"
-            onclick="
-              document.getElementById('achievements-modal').style.display =
-                'none'
-            "
-            >&times;</span
-          >
-        </div>
-        <div class="achievements-list" id="achievements-list">
-          <!-- Injected via JS -->
-        </div>
-      </div>
-    </div>
-
-    <!-- Modal Fitur Komunitas -->
-    <div id="roadmap-modal" class="modal">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h2>Dokumen Terklasifikasi</h2>
-          <span
-            class="close-button"
-            onclick="
-              document.getElementById('roadmap-modal').style.display = 'none'
-            "
-            >&times;</span
-          >
-        </div>
-        <div style="text-align: left; line-height: 1.8; font-size: 1.05em">
-          <p>
-            Operasi fitur ekstra sedang dikembangkan oleh tim. Tetap waspada!
-          </p>
-          <ul
-            style="
-              color: var(--secondary-text-color);
-              padding-left: 20px;
-              list-style-type: square;
-            "
-          >
-            <li>
-              <strong style="color: var(--primary-text-color)"
-                >Papan Peringkat:</strong
-              >
-              Bandingkan skor dengan detektif lain.
-            </li>
-            <li>
-              <strong style="color: var(--primary-text-color)"
-                >Mode Multiplayer:</strong
-              >
-              Balapan pecahkan kasus.
-            </li>
-            <li>
-              <strong style="color: var(--primary-text-color)"
-                >Kasus Komunitas:</strong
-              >
-              Kirimkan teka-teki buatanmu.
-            </li>
-            <li>
-              <strong style="color: var(--primary-text-color)"
-                >Tantangan Mingguan:</strong
-              >
-              Kasus bonus akhir pekan.
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
-
-    <!-- Modal Archive -->
     <div id="archive-modal" class="modal">
       <div class="modal-content">
         <div class="modal-header">
-          <h2>Arsip Kasus</h2>
-          <span
-            class="close-button"
-            onclick="
-              document.getElementById('archive-modal').style.display = 'none'
-            "
-            >&times;</span
-          >
+          <h2>Arsip Puzzle Selesai</h2>
+          <span class="close-button">&times;</span>
         </div>
-        <div
-          id="archive-list"
-          style="max-height: 60vh; overflow-y: auto; text-align: left"
-        ></div>
+        <div id="archive-list"></div>
       </div>
     </div>
 
     <script>
       document.addEventListener("DOMContentLoaded", () => {
-        // --- DATA TEKA-TEKI ---
-        const puzzlesDb = [
+        // --- AUDIO CONTEXT FOR TYPING SOUND ---
+        let audioCtx;
+        try {
+          audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        } catch (e) {
+          console.error("Web Audio API is not supported in this browser");
+        }
+
+        function playKeySound() {
+          if (!audioCtx) return;
+          const oscillator = audioCtx.createOscillator();
+          const gainNode = audioCtx.createGain();
+
+          oscillator.connect(gainNode);
+          gainNode.connect(audioCtx.destination);
+
+          // Sound Profile for "Creamy" feel
+          oscillator.type = "sine"; // Soft, rounded sound
+          oscillator.frequency.setValueAtTime(
+            300 + Math.random() * 50,
+            audioCtx.currentTime,
+          ); // Low-mid pitch
+          gainNode.gain.setValueAtTime(0.3, audioCtx.currentTime); // Start volume
+
+          // Quick decay to simulate a key press
+          gainNode.gain.exponentialRampToValueAtTime(
+            0.0001,
+            audioCtx.currentTime + 0.1,
+          );
+
+          oscillator.start(audioCtx.currentTime);
+          oscillator.stop(audioCtx.currentTime + 0.1);
+        }
+
+        // --- DOM ELEMENTS ---
+        const puzzleCounterEl = document.getElementById("puzzle-counter");
+        const puzzleQuestionEl = document.getElementById("puzzle-question");
+        const answerInputEl = document.getElementById("answer-input");
+        const submitButtonEl = document.getElementById("submit-button");
+        const hintButtonEl = document.getElementById("hint-button");
+        const nextPuzzleButtonEl =
+          document.getElementById("next-puzzle-button");
+        const feedbackAreaEl = document.getElementById("feedback-area");
+        const hintsAreaEl = document.getElementById("hints-area");
+        const hintElements = [1, 2, 3, 4, 5].map((i) =>
+          document.getElementById(`hint-${i}`),
+        );
+        const weeklyScoreEl = document.getElementById("weekly-score");
+        const streakEl = document.getElementById("streak");
+        const dailyScoreEl = document.getElementById("daily-score");
+        const countdownTimerEl = document.getElementById("countdown-timer");
+        const comebackMessageEl = document.getElementById("comeback-message");
+        const gameControlsEl = document.getElementById("game-controls");
+        const archiveModal = document.getElementById("archive-modal");
+        const archiveButton = document.getElementById("archive-button");
+        const closeButton = document.querySelector(".close-button");
+        const archiveListEl = document.getElementById("archive-list");
+
+        // --- PUZZLE DATA (EMBEDDED) ---
+        const puzzles = [
           {
-            id: 1,
-            cat: "Pemikiran Abstrak",
-            diff: "Sedang",
             question:
-              "Aku menelan segalanya: burung, binatang, pohon, bunga; Aku menggerogoti besi, menggigit baja; Aku menghancurkan kota dan meruntuhkan gunung tinggi. Siapakah aku?",
+              "Aku menelan segalanya: burung, binatang, pohon, bunga; Aku menggerogoti besi, menggigit baja; Aku menggiling batu keras menjadi debu, membunuh raja, menghancurkan kota, dan meruntuhkan gunung tinggi. Siapakah aku?",
             hints: [
-              "Aku tidak bisa dilihat.",
-              "Musuh semua struktur.",
-              "Jam mengukurku.",
+              "Aku tidak bisa dilihat atau disentuh.",
+              "Aku adalah musuh terbesar semua struktur.",
+              "Setiap detik, aku bergerak maju.",
+              "Jam adalah alat untuk mengukurku.",
+              "Aku tidak bisa dihentikan atau dibalikkan.",
             ],
             answer: "waktu",
           },
           {
-            id: 2,
-            cat: "Logika",
-            diff: "Sulit",
             question:
-              "Dua orang ayah dan dua orang anak pergi memancing. Mereka masing-masing menangkap satu ikan. Total hanya ada tiga ikan yang ditangkap. Mengapa?",
+              "Dua orang ayah dan dua orang anak pergi memancing. Mereka masing-masing menangkap satu ikan. Total hanya ada tiga ikan yang ditangkap. Mengapa demikian?",
             hints: [
-              "Bukan matematika.",
-              "Seseorang punya 2 peran.",
-              "Kakek, ayah, anak.",
+              "Ini bukan teka-teki matematika, melainkan logika.",
+              "Pikirkan tentang hubungan keluarga.",
+              "Hitung jumlah total orang yang pergi memancing.",
+              "Seseorang memiliki dua peran keluarga sekaligus.",
+              "Yang pergi memancing adalah kakek, ayah, dan anak.",
             ],
             answer: "tiga orang",
           },
           {
-            id: 3,
-            cat: "Permainan Kata",
-            diff: "Mudah",
             question:
               "Apa yang dimulai dengan 'e', diakhiri dengan 'e', tetapi hanya berisi satu huruf?",
             hints: [
-              "Bersifat meta.",
-              "Digunakan mengirim surat.",
-              "Satu huruf ada di dalamnya.",
+              "Jawaban ini bersifat meta dan bermain dengan kata-kata.",
+              "Fokus pada objek fisik, bukan kata itu sendiri.",
+              "Objek ini digunakan untuk mengirim surat.",
+              "Satu huruf yang dimaksud ada di dalamnya.",
+              "Huruf 'e' adalah awal dan akhir dari kata objeknya.",
             ],
             answer: "amplop",
           },
           {
-            id: 4,
-            cat: "Lateral",
-            diff: "Sulit",
             question:
-              "Seorang pria tewas di ruangan terkunci dari dalam dengan genangan air dan tali. Tidak ada cara masuk/keluar. Bagaimana dia meninggal?",
+              "Seorang pria ditemukan tewas di sebuah ruangan dengan genangan air kecil dan dua potong kayu. Ruangan itu terkunci dari dalam dan tidak ada cara lain untuk masuk atau keluar. Bagaimana dia meninggal?",
             hints: [
-              "Tidak dibunuh.",
-              "Perubahan wujud benda.",
-              "Dia berdiri di atas sesuatu yang mencair.",
+              "Pria itu tidak dibunuh.",
+              "Genangan air adalah kunci utamanya.",
+              "Pikirkan tentang perubahan wujud benda.",
+              "Kematiannya disebabkan oleh sesuatu yang mencair.",
+              "Dia berdiri di atas balok es besar untuk gantung diri.",
             ],
             answer: "bunuh diri",
           },
           {
-            id: 5,
-            cat: "Teka-teki Klasik",
-            diff: "Mudah",
             question:
-              "Aku tidak punya paru-paru, tapi butuh udara. Aku tidak punya mulut, tapi air membunuhku. Siapakah aku?",
+              "Aku tidak punya paru-paru, tapi aku butuh udara. Aku tidak punya mulut, tapi air membunuhku. Siapakah aku?",
             hints: [
-              "Teman atau musuh.",
-              "Menari dan berkelip.",
-              "Asap adalah jejakku.",
+              "Aku bisa menjadi teman atau musuh.",
+              "Aku menari dan berkelip.",
+              "Manusia purba menggunakanku untuk kehangatan.",
+              "Asap adalah jejak keberadaanku.",
+              "Aku melahap kayu.",
             ],
             answer: "api",
           },
           {
-            id: 6,
-            cat: "Logika Matematika",
-            diff: "Sedang",
             question:
-              "Seorang pedagang membeli vas 700rb, menjualnya 800rb, membelinya lagi 900rb, dan menjualnya 1jt. Berapa banyak keuntungannya?",
+              "Seorang pedagang barang antik membeli vas seharga 700 ribu, menjualnya seharga 800 ribu, membelinya kembali seharga 900 ribu, dan menjualnya lagi seharga 1 juta. Berapa banyak keuntungan yang dia dapatkan?",
             hints: [
-              "Fokus uang keluar & masuk.",
-              "Pengeluaran 1600.",
-              "Pemasukan 1800.",
+              "Fokus pada total uang keluar dan total uang masuk.",
+              "Abaikan transaksi perantara yang membingungkan.",
+              "Total pengeluaran: 700 + 900.",
+              "Total pemasukan: 800 + 1000.",
+              "Hitung selisih antara total pemasukan dan pengeluaran.",
             ],
             answer: "200 ribu",
           },
           {
-            id: 7,
-            cat: "Visualisasi",
-            diff: "Mudah",
             question:
               "Aku memiliki danau tanpa air, gunung tanpa batu, dan kota tanpa bangunan. Siapakah aku?",
             hints: [
-              "Representasi dunia.",
-              "Datar dan dilipat.",
-              "Digunakan traveler.",
+              "Aku adalah representasi dari dunia nyata.",
+              "Aku datar dan bisa dilipat.",
+              "Aku tidak menunjukkan ketinggian atau tekstur secara fisik.",
+              "Navigator dan pelancong sering menggunakanku.",
+              "Jawabanku sama dengan teka-teki peta yang lebih mudah, tetapi dengan kata-kata yang berbeda.",
             ],
             answer: "peta",
           },
           {
-            id: 8,
-            cat: "Observasi Alam",
-            diff: "Sedang",
             question:
               "Apa yang bisa berjalan di atas air tetapi tidak pernah basah?",
-            hints: ["Tidak hidup.", "Butuh cahaya.", "Meniru bentukmu."],
+            hints: [
+              "Aku tidak hidup.",
+              "Aku tercipta dari interaksi antara benda dan permukaan.",
+              "Cahaya adalah komponen penting untuk keberadaanku.",
+              "Aku meniru bentukmu.",
+              "Aku adalah teman gelapmu di hari yang cerah.",
+            ],
             answer: "bayangan",
           },
           {
-            id: 9,
-            cat: "Lateral",
-            diff: "Sedang",
             question:
-              "Pria tinggal di lantai 10. Tiap hari naik lift ke lantai dasar untuk kerja. Saat pulang, naik lift ke lantai 7 lalu berjalan 3 lantai. Mengapa?",
+              "Seorang pria tinggal di lantai 10 sebuah gedung. Setiap hari dia naik lift ke lantai dasar untuk pergi bekerja. Saat pulang, dia naik lift ke lantai 7 dan berjalan sisa 3 lantai. Mengapa?",
             hints: [
-              "Lift normal.",
-              "Bukan olahraga.",
-              "Masalah jangkauan tangan.",
+              "Tidak ada yang salah dengan liftnya.",
+              "Ini bukan karena dia ingin berolahraga.",
+              "Pria itu memiliki keterbatasan fisik.",
+              "Pikirkan tentang jangkauan tangannya.",
+              "Dia terlalu pendek untuk mencapai tombol lantai 10.",
             ],
             answer: "dia pendek",
           },
           {
-            id: 10,
-            cat: "Sains / Fisika",
-            diff: "Mudah",
             question:
-              "Aku berbicara semua bahasa, membentuk semua bangsa, tetapi tak pernah sekolah. Siapakah aku?",
-            hints: ["Gema pikiran.", "Pantulan suara.", "Ada di tebing."],
+              "Aku berbicara semua bahasa dan membentuk semua bangsa, tetapi aku tidak pernah sekolah. Siapakah aku?",
+            hints: [
+              "Aku adalah gema dari pikiran dan suara.",
+              "Aku bisa menjadi keras atau lembut.",
+              "Aku ada di antara dua gunung.",
+              "Aku kembali kepadamu setelah kamu berbicara.",
+              "Aku adalah pantulan suara.",
+            ],
             answer: "gema",
           },
           {
-            id: 11,
-            cat: "Benda Sehari-hari",
-            diff: "Mudah",
             question: "Apa yang memiliki banyak gigi tetapi tidak bisa makan?",
             hints: [
-              "Alat sehari-hari.",
-              "Ditemukan di rambut.",
-              "Merapikan sesuatu.",
+              "Aku adalah alat sehari-hari.",
+              "Aku sering ditemukan di rambut.",
+              "Aku membantu merapikan sesuatu.",
+              "Gigiku berbaris rapi.",
+              "Aku adalah sebuah...",
             ],
             answer: "sisir",
           },
           {
-            id: 12,
-            cat: "Sifat Benda",
-            diff: "Mudah",
             question:
-              "Jika dijatuhkan aku pecah. Tapi beri aku senyuman, aku tersenyum kembali. Siapakah aku?",
-            hints: ["Rapuh.", "Pantulan.", "Ada di kamar mandi."],
+              "Jika kamu menjatuhkanku, aku pasti akan pecah. Tapi berikan aku senyuman, dan aku akan selalu tersenyum kembali. Siapakah aku?",
+            hints: [
+              "Aku rapuh.",
+              "Aku menunjukkan apa yang ada di depanku.",
+              "Aku bisa ditemukan di kamar mandi atau di dinding.",
+              "Aku memantulkan cahaya.",
+              "Aku adalah sebuah...",
+            ],
             answer: "cermin",
           },
           {
-            id: 13,
-            cat: "Konsep Waktu",
-            diff: "Sedang",
             question:
               "Apa yang selalu ada di depanmu tetapi tidak bisa dilihat?",
             hints: [
-              "Sebuah konsep.",
-              "Kamu bergerak ke arahnya.",
-              "Besok adalah bagiannya.",
+              "Ini adalah konsep, bukan objek.",
+              "Kamu selalu bergerak ke arahnya.",
+              "Masa lalu ada di belakangmu, ini ada di depanmu.",
+              "Besok adalah bagian darinya.",
+              "Ini adalah...",
             ],
             answer: "masa depan",
           },
           {
-            id: 14,
-            cat: "Teka-teki Modern",
-            diff: "Mudah",
             question:
               "Aku tidak punya kehidupan, tapi aku bisa mati. Siapakah aku?",
             hints: [
-              "Butuh sumber daya.",
-              "Di perangkat elektronik.",
-              "Perlu di-charge.",
+              "Aku membutuhkan sumber daya untuk 'hidup'.",
+              "Aku sering ditemukan di perangkat elektronik.",
+              "Ketika aku 'mati', perangkat itu tidak bisa digunakan.",
+              "Aku perlu diisi ulang.",
+              "Aku adalah sebuah...",
             ],
             answer: "baterai",
           },
           {
-            id: 15,
-            cat: "Anatomi",
-            diff: "Sedang",
             question:
               "Apa yang bisa kamu pegang di tangan kirimu, tapi tidak di tangan kananmu?",
             hints: [
-              "Bukan benda eksternal.",
-              "Lihat tangan kananmu.",
-              "Refleksi diri.",
+              "Ini bukan objek fisik.",
+              "Ini adalah refleksi dari tanganmu sendiri.",
+              "Lihatlah tangan kananmu.",
+              "Apa yang bisa kamu pegang dengan tangan kirimu?",
+              "Jawabannya adalah...",
             ],
             answer: "tangan kananmu",
           },
           {
-            id: 16,
-            cat: "Sifat Benda",
-            diff: "Mudah",
             question: "Apa yang penuh lubang tapi masih bisa menampung air?",
-            hints: ["Alat pembersih.", "Menyerap cairan.", "Di dapur."],
+            hints: [
+              "Aku sering ditemukan di dapur atau kamar mandi.",
+              "Aku memiliki tekstur yang berpori.",
+              "Aku menyerap cairan.",
+              "Aku menjadi lebih berat saat basah.",
+              "Aku adalah...",
+            ],
             answer: "spons",
           },
           {
-            id: 17,
-            cat: "Logika Silsilah",
-            diff: "Sulit",
             question:
-              "Pria melihat potret: 'Saudara aku tak punya, tapi ayah orang ini adalah anak dari ayahku.' Siapa di potret?",
+              "Seorang pria melihat sebuah potret. Seseorang bertanya potret siapa yang dia lihat. Dia menjawab, 'Saudara laki-laki dan perempuan, aku tidak punya, tetapi ayah orang itu adalah anak dari ayahku.' Siapakah yang ada di potret itu?",
             hints: [
-              "Anak dari ayahku = aku.",
-              "Ayah orang itu = aku.",
-              "Dia melihat ke bawah silsilah.",
+              "Ini adalah teka-teki silsilah keluarga.",
+              "'Anak dari ayahku' bisa jadi adalah aku sendiri.",
+              "Jika 'anak dari ayahku' adalah si pembicara...",
+              "Maka kalimatnya menjadi 'ayah orang itu adalah aku'.",
+              "Jadi, orang di potret itu adalah...",
             ],
             answer: "anaknya",
           },
           {
-            id: 18,
-            cat: "Benda Sehari-hari",
-            diff: "Sedang",
             question:
               "Apa yang bisa berkeliling dunia sambil tetap berada di pojok?",
             hints: [
-              "Kecil dan tipis.",
-              "Ditempel di surat.",
-              "Memiliki nilai.",
+              "Aku sangat kecil dan tipis.",
+              "Aku ditempelkan pada sesuatu yang dikirim.",
+              "Aku memiliki gambar dan nilai.",
+              "Aku sering dijilat sebelum digunakan.",
+              "Aku adalah sebuah...",
             ],
             answer: "perangko",
           },
           {
-            id: 19,
-            cat: "Teka-teki Klasik",
-            diff: "Mudah",
             question: "Apa yang harus rusak sebelum kamu bisa menggunakannya?",
-            hints: ["Cangkang rapuh.", "Sumber protein.", "Dari ayam."],
+            hints: [
+              "Aku memiliki cangkang yang rapuh.",
+              "Aku adalah sumber protein.",
+              "Aku sering dimakan saat sarapan.",
+              "Ayam adalah sumberku.",
+              "Aku adalah sebuah...",
+            ],
             answer: "telur",
           },
           {
-            id: 20,
-            cat: "Permainan Kata",
-            diff: "Sedang",
             question:
-              "Aku angka ganjil. Buang satu huruf dariku, aku menjadi genap. Angka berapakah aku (dalam bahasa Inggris)?",
+              "Aku adalah angka ganjil. Buang satu huruf dariku, dan aku menjadi genap. Angka berapakah aku?",
             hints: [
-              "Antara 5 dan 10.",
-              "Berawalan S.",
-              "Buang 'S' dari 'Seven'.",
+              "Jawabannya dalam bahasa Inggris.",
+              "Pikirkan nama angka dalam bahasa Inggris.",
+              "Angka ini antara 5 dan 10.",
+              "Nama angka ini dimulai dengan huruf 'S'.",
+              "Seven (tujuh). Buang 'S', menjadi 'even' (genap).",
             ],
             answer: "tujuh",
           },
           {
-            id: 21,
-            cat: "Lateral",
-            diff: "Sedang",
             question:
-              "Seorang pria mendorong mobilnya ke hotel dan memberi tahu pemiliknya bahwa dia bangkrut. Mengapa?",
+              "Di sebuah ruangan ada seorang pria yang sudah mati tergantung di kasau, dengan genangan air di bawahnya. Tidak ada perabotan lain di ruangan itu. Bagaimana dia bisa gantung diri?",
             hints: [
-              "Bukan dunia nyata.",
-              "Mobil itu token kecil.",
-              "Hotel itu properti mainan.",
+              "Dia tidak menggunakan kursi atau meja.",
+              "Sesuatu yang dia gunakan untuk memanjat telah menghilang.",
+              "Genangan air adalah sisa dari alat panjatnya.",
+              "Alat panjatnya mencair.",
+              "Dia berdiri di atas balok es.",
             ],
-            answer: "bermain monopoli",
+            answer: "balok es",
           },
           {
-            id: 22,
-            cat: "Permainan Kata",
-            diff: "Sulit",
             question:
-              "Apa yang datang sekali dalam satu menit, dua kali dalam sekejap (moment), tapi tak pernah dalam seribu tahun?",
+              "Seorang pria mendorong mobilnya ke sebuah hotel dan memberi tahu pemiliknya bahwa dia bangkrut. Mengapa?",
             hints: [
-              "Bukan waktu.",
-              "Perhatikan ejaan.",
-              "Kemunculan sebuah huruf.",
+              "Ini bukan tentang kondisi keuangan pria itu.",
+              "Ini adalah sebuah permainan.",
+              "Mobil yang dia dorong adalah sebuah token kecil.",
+              "Hotel juga merupakan properti dalam permainan ini.",
+              "Dia sedang bermain Monopoli.",
+            ],
+            answer: "dia bermain monopoli",
+          },
+          {
+            question:
+              "Apa yang datang sekali dalam satu menit, dua kali dalam sekejap (moment), tetapi tidak pernah dalam seribu tahun?",
+            hints: [
+              "Jawabannya bukan angka atau konsep waktu.",
+              "Perhatikan ejaan kata-katanya.",
+              "Huruf apa yang muncul dalam kata-kata tersebut?",
+              "Hitung kemunculan huruf dalam 'menit', 'moment', dan 'tahun'.",
+              "Ini adalah huruf 'm'.",
             ],
             answer: "huruf m",
           },
           {
-            id: 23,
-            cat: "Pemikiran Abstrak",
-            diff: "Sedang",
             question:
               "Semakin banyak ini, semakin sedikit yang kamu lihat. Apa itu?",
             hints: [
-              "Bukan benda fisik.",
-              "Menghalangi pandangan.",
-              "Lilin menghilangkannya.",
+              "Ini bukan objek fisik.",
+              "Ini menghalangi pandangan.",
+              "Ini sering terjadi di malam hari atau di tempat yang tidak ada cahaya.",
+              "Lilin atau lampu dapat menghilangkannya.",
+              "Ini adalah...",
             ],
             answer: "kegelapan",
           },
           {
-            id: 24,
-            cat: "Benda Sehari-hari",
-            diff: "Mudah",
             question:
               "Apa yang memiliki kata-kata, tetapi tidak pernah berbicara?",
-            hints: ["Di perpustakaan.", "Punya halaman.", "Kamu membacanya."],
+            hints: [
+              "Aku bisa ditemukan di perpustakaan.",
+              "Aku memiliki halaman dan sampul.",
+              "Aku menceritakan kisah tanpa suara.",
+              "Kamu membacaku.",
+              "Aku adalah sebuah...",
+            ],
             answer: "buku",
           },
           {
-            id: 25,
-            cat: "Bias Kognitif",
-            diff: "Sedang",
             question:
-              "Ayah & anak kecelakaan. Ayah tewas. Ahli bedah melihat anak itu: 'Aku tak bisa mengoperasinya, dia putraku!' Bagaimana bisa?",
+              "Seorang pria dan putranya mengalami kecelakaan mobil. Sang ayah meninggal di tempat. Anak itu dilarikan ke rumah sakit. Di ruang gawat darurat, kepala ahli bedah melihat anak itu dan berkata, 'Aku tidak bisa mengoperasi anak ini! Dia adalah putraku!' Bagaimana ini mungkin?",
             hints: [
-              "Ahli bedah bukan pria.",
-              "Pikirkan gender profesi.",
-              "Orang tua yang satunya.",
+              "Tidak ada kebohongan dalam cerita ini.",
+              "Pikirkan tentang profesi dan gender.",
+              "Ahli bedah tidak selalu laki-laki.",
+              "Kepala ahli bedah itu adalah seorang wanita.",
+              "Ahli bedah itu adalah ibu dari anak tersebut.",
             ],
-            answer: "ibunya",
+            answer: "ahli bedah itu ibunya",
           },
           {
-            id: 26,
-            cat: "Sains",
-            diff: "Sedang",
             question:
               "Apa yang bisa mengisi seluruh ruangan tetapi tidak memakan tempat sama sekali?",
             hints: [
-              "Tak bisa disentuh.",
-              "Penting untuk hidup.",
-              "Berasal dari lampu.",
+              "Kamu tidak bisa menyentuhnya.",
+              "Kamu tidak bisa melihatnya, tetapi kamu tahu itu ada.",
+              "Ini penting untuk kehidupan.",
+              "Lampu adalah sumbernya.",
+              "Ini adalah...",
             ],
             answer: "cahaya",
           },
           {
-            id: 27,
-            cat: "Jebakan Logika",
-            diff: "Mudah",
             question:
               "Mana yang lebih berat: satu ton bulu atau satu ton batu bata?",
             hints: [
-              "Perhatikan satuan.",
-              "Satu ton ya satu ton.",
-              "Material tidak relevan.",
+              "Ini adalah teka-teki jebakan klasik.",
+              "Perhatikan satuan berat yang digunakan.",
+              "Satu ton adalah satu ton.",
+              "Beratnya tidak bergantung pada bahannya.",
+              "Keduanya memiliki berat yang sama.",
             ],
             answer: "sama berat",
           },
           {
-            id: 28,
-            cat: "Benda Sehari-hari",
-            diff: "Mudah",
             question: "Apa yang naik dan turun tetapi tidak pernah bergerak?",
-            hints: ["Membantumu naik.", "Ada di gedung.", "Sebuah struktur."],
+            hints: [
+              "Aku ditemukan di luar ruangan.",
+              "Aku bisa menjadi sangat panas.",
+              "Aku membantumu naik dan turun.",
+              "Aku adalah sebuah struktur.",
+              "Aku adalah...",
+            ],
             answer: "tangga",
           },
           {
-            id: 29,
-            cat: "Lateral",
-            diff: "Sedang",
             question:
-              "Gadis jatuh dari tangga 50 kaki tapi tak terluka. Bagaimana bisa?",
+              "Seorang gadis jatuh dari tangga setinggi 50 kaki, tetapi dia tidak terluka sama sekali. Bagaimana bisa?",
             hints: [
-              "Tidak ada pengaman.",
-              "Perhatikan dari mana dia jatuh.",
-              "Anak tangga pertama.",
+              "Dia tidak mendarat di sesuatu yang empuk.",
+              "Dia tidak memiliki peralatan pengaman.",
+              "Pikirkan dari mana dia jatuh.",
+              "Dia tidak jatuh dari puncak tangga.",
+              "Dia jatuh dari anak tangga paling bawah.",
             ],
-            answer: "anak tangga bawah",
+            answer: "dia jatuh dari anak tangga bawah",
           },
           {
-            id: 30,
-            cat: "Permainan Kata",
-            diff: "Sedang",
             question:
-              "Aku punya cabang (branch), tapi tak punya buah, batang, atau daun. Siapakah aku?",
-            hints: ["Tempat menyimpan sesuatu.", "Punya ATM.", "Urusan uang."],
+              "Aku punya cabang, tapi tidak punya buah, batang, atau daun. Siapakah aku?",
+            hints: [
+              "Aku adalah tempat menyimpan uang.",
+              "Aku memiliki banyak lokasi.",
+              "Orang-orang datang kepadaku untuk transaksi keuangan.",
+              "Aku bisa berupa gedung.",
+              "Aku adalah sebuah...",
+            ],
             answer: "bank",
           },
           {
-            id: 31,
-            cat: "Sifat Benda",
-            diff: "Mudah",
             question:
               "Apa yang menjadi lebih basah semakin banyak ia mengeringkan?",
             hints: [
-              "Terbuat dari kain.",
-              "Dipakai setelah mandi.",
-              "Menyerap air tubuh.",
+              "Aku terbuat dari kain.",
+              "Kamu menggunakanku setelah mandi.",
+              "Aku menyerap air dari tubuhmu.",
+              "Saat aku bekerja, aku menjadi basah.",
+              "Aku adalah sebuah...",
             ],
             answer: "handuk",
           },
           {
-            id: 32,
-            cat: "Logika Biologi",
-            diff: "Sedang",
             question:
-              "Dua gadis lahir dari ibu, hari, waktu, bulan, dan tahun yang sama, namun bukan kembar dua. Bagaimana bisa?",
+              "Dua gadis lahir dari ibu yang sama, pada hari yang sama, pada waktu yang sama, pada bulan yang sama dan tahun yang sama, namun mereka bukan kembar. Bagaimana ini bisa terjadi?",
             hints: [
+              "Mereka memiliki ibu yang sama.",
               "Mereka bersaudara.",
-              "Jumlah kelahiran lebih.",
-              "Ada saudara lain.",
+              "Pikirkan tentang jumlah kelahiran.",
+              "Mungkin ada saudara lain yang lahir pada saat yang sama.",
+              "Mereka adalah bagian dari kelahiran kembar tiga (atau lebih).",
             ],
-            answer: "kembar tiga",
+            answer: "mereka kembar tiga",
           },
           {
-            id: 33,
-            cat: "Permainan Kata (Inggris)",
-            diff: "Sulit",
             question:
-              "Apa yang bisa kamu tangkap (catch), tetapi tidak bisa kamu lempar?",
+              "Apa yang bisa kamu tangkap, tetapi tidak bisa kamu lempar?",
             hints: [
-              "Terkait cuaca.",
-              "Penyakit ringan.",
-              "Kamu bisa 'catch a...'",
+              "Ini adalah sesuatu yang bisa terjadi padamu saat cuaca buruk.",
+              "Ini adalah penyakit ringan.",
+              "Gejalanya termasuk bersin dan batuk.",
+              "Kamu bisa 'menangkap' ini dari orang lain.",
+              "Kamu bisa masuk...",
             ],
-            answer: "flu",
+            answer: "angin",
           },
           {
-            id: 34,
-            cat: "Jebakan Logika",
-            diff: "Sedang",
-            question: "Ada 12 ikan di tangki. 6 tenggelam. Berapa yang sisa?",
+            question:
+              "Jika ada 12 ikan di dalam tangki dan 6 di antaranya tenggelam, berapa banyak yang tersisa?",
             hints: [
-              "Biologi ikan.",
-              "Ikan tak tenggelam.",
-              "Masih hidup di air.",
+              "Ini adalah teka-teki jebakan.",
+              "Pikirkan tentang biologi ikan.",
+              "Bisakah ikan benar-benar tenggelam?",
+              "Ikan hidup di air.",
+              "Semua 12 ikan masih ada di dalam tangki.",
             ],
             answer: "12",
           },
           {
-            id: 35,
-            cat: "Logika Kalender",
-            diff: "Sedang",
             question: "Berapa banyak bulan yang memiliki 28 hari?",
             hints: [
-              "Bukan cuma satu bulan.",
-              "Semua minimal 28.",
-              "Pikirkan kalender utuh.",
+              "Ini bukan hanya tentang satu bulan tertentu.",
+              "Setiap bulan memiliki setidaknya 28 hari.",
+              "Pikirkan kalender.",
+              "Januari memiliki 31 hari, yang juga mencakup 28 hari.",
+              "Semua 12 bulan.",
             ],
             answer: "semua",
           },
           {
-            id: 36,
-            cat: "Sifat Material",
-            diff: "Sedang",
             question:
-              "Apa yang hitam saat dibeli, merah saat dipakai, dan abu-abu saat dibuang?",
-            hints: ["Dipakai untuk panas.", "Karbon.", "Terbakar perlahan."],
+              "Apa yang hitam saat kamu membelinya, merah saat kamu menggunakannya, dan abu-abu saat kamu membuangnya?",
+            hints: [
+              "Aku digunakan untuk panas.",
+              "Aku sering digunakan untuk barbekyu.",
+              "Aku adalah bentuk karbon.",
+              "Aku terbakar perlahan.",
+              "Aku adalah...",
+            ],
             answer: "arang",
           },
           {
-            id: 37,
-            cat: "Observasi",
-            diff: "Mudah",
             question:
-              "Aku mengikutimu sepanjang hari, tapi menghilang saat matahari terbenam. Siapa aku?",
-            hints: ["Versi gelapmu.", "Di kakimu.", "Butuh cahaya."],
-            answer: "bayangan",
+              "Aku mengikuti kamu sepanjang hari, tetapi menghilang saat matahari terbenam. Siapakah aku?",
+            hints: [
+              "Aku adalah versi gelap dari dirimu.",
+              "Aku menempel di kakimu.",
+              "Panjangku berubah sepanjang hari.",
+              "Aku membutuhkan cahaya untuk ada.",
+              "Aku adalah...",
+            ],
+            answer: "bayanganmu",
           },
           {
-            id: 38,
-            cat: "Anatomi Benda",
-            diff: "Mudah",
             question:
               "Apa yang memiliki leher tanpa kepala, dan punggung tanpa tulang?",
-            hints: ["Pakaian.", "Punya kancing.", "Dipakai di atas tubuh."],
+            hints: [
+              "Aku adalah pakaian.",
+              "Aku memiliki lengan tetapi tidak memiliki tangan.",
+              "Aku sering memiliki kancing.",
+              "Aku dipakai di tubuh bagian atas.",
+              "Aku adalah sebuah...",
+            ],
             answer: "kemeja",
           },
           {
-            id: 39,
-            cat: "Logika Silsilah",
-            diff: "Sulit",
             question:
-              "Pria berkata tentang putrinya: 'Mereka adalah putri ayahku, tapi bukan saudara perempuanku.' Siapa mereka?",
+              "Seorang pria menggambarkan putrinya, dia berkata, 'Mereka adalah putri dari ayahku, tetapi bukan saudara perempuanku.' Siapakah yang dia bicarakan?",
             hints: [
-              "Pria tak berbohong.",
-              "Dia anak tunggal pria.",
-              "Itu anaknya sendiri.",
+              "Pria itu tidak berbohong.",
+              "Pikirkan tentang hubungan keluarga yang mungkin.",
+              "Dia adalah ayah mereka.",
+              "Dia tidak punya saudara perempuan.",
+              "Dia sedang berbicara tentang putrinya sendiri.",
             ],
             answer: "putrinya",
           },
           {
-            id: 40,
-            cat: "Anatomi Benda",
-            diff: "Sedang",
-            question: "Apa yang tak bisa masuk panci sebesar apapun panci itu?",
-            hints: ["Pasangan panci.", "Menutupi panci.", "Berada di atasnya."],
+            question:
+              "Apa yang tidak bisa dimasukkan ke dalam panci, tidak peduli seberapa besar panci itu?",
+            hints: [
+              "Ini bukan objek fisik.",
+              "Panci memiliki bagian ini.",
+              "Setiap panci memilikinya.",
+              "Kamu tidak bisa memasukkannya ke dalam panci itu sendiri.",
+              "Itu adalah...",
+            ],
             answer: "tutupnya",
           },
           {
-            id: 41,
-            cat: "Botani",
-            diff: "Sulit",
             question:
-              "Apa yang dibuang luarnya, masak dalamnya, makan luarnya, buang dalamnya?",
+              "Apa yang kamu buang bagian luarnya dan memasak bagian dalamnya, lalu memakan bagian luarnya dan membuang bagian dalamnya?",
             hints: [
-              "Sayuran berambut.",
-              "Daun dibuang, direbus.",
-              "Makan biji, buang tongkol.",
+              "Ini adalah sayuran.",
+              "Ini memiliki 'rambut' di atasnya.",
+              "Ini sering direbus atau dipanggang.",
+              "Kamu membuang daunnya (luar), memasak tongkolnya (dalam).",
+              "Kamu memakan bijinya (luar dari tongkol) dan membuang tongkolnya (dalam).",
             ],
             answer: "jagung",
           },
           {
-            id: 42,
-            cat: "Lateral",
-            diff: "Sedang",
             question:
-              "Sopir truk melaju di jalur salah satu arah melewati 10 polisi. Dia tidak ditilang. Mengapa?",
+              "Seorang sopir truk melaju ke arah yang salah di jalan satu arah dan melewati setidaknya 10 polisi. Dia tidak ditilang. Mengapa?",
             hints: [
-              "Polisi melihatnya.",
-              "Mode transportasinya.",
-              "Dia tidak nyetir.",
+              "Dia melanggar hukum lalu lintas.",
+              "Para polisi melihatnya dengan jelas.",
+              "Pikirkan tentang bagaimana dia bepergian.",
+              "Dia tidak sedang mengendarai truknya.",
+              "Dia sedang berjalan kaki.",
             ],
-            answer: "berjalan kaki",
+            answer: "dia sedang berjalan",
           },
           {
-            id: 43,
-            cat: "Pemikiran Abstrak",
-            diff: "Sedang",
-            question: "Apa yang pecah hanya dengan menyebut namanya?",
-            hints: ["Bukan benda.", "Suasana tenang.", "Lawan bising."],
+            question:
+              "Apa yang bisa kamu pecahkan hanya dengan menyebut namanya?",
+            hints: [
+              "Ini adalah sebuah konsep, bukan benda.",
+              "Ini sering terjadi dalam suasana yang tenang.",
+              "Berbicara akan merusaknya.",
+              "Ini adalah lawan dari kebisingan.",
+              "Ini adalah...",
+            ],
             answer: "hening",
           },
           {
-            id: 44,
-            cat: "Permainan Kata",
-            diff: "Mudah",
-            question: "Jika dua teman, tiga kerumunan, apa empat dan lima?",
-            hints: ["Bukan sosial.", "Matematika dasar.", "4 tambah 5."],
+            question:
+              "Jika dua adalah teman dan tiga adalah kerumunan, apa itu empat dan lima?",
+            hints: [
+              "Ini bukan tentang hubungan sosial.",
+              "Ini adalah teka-teki matematika sederhana.",
+              "Lakukan operasi aritmatika.",
+              "4 + 5 = ?",
+              "Jawabannya adalah sembilan.",
+            ],
             answer: "sembilan",
           },
           {
-            id: 45,
-            cat: "Anatomi Manusia",
-            diff: "Sedang",
-            question:
-              "Apa yang dasar (sole) nya ada di bawah, tapi sering berada di atas?",
-            hints: ["Bagian tubuh.", "Punya jari.", "Untuk berjalan."],
+            question: "Apa yang memiliki dasar di atas?",
+            hints: [
+              "Ini adalah bagian tubuhmu.",
+              "Ini ada di bawah lututmu.",
+              "Pikirkan tentang anatomi.",
+              "Ini adalah bagian dari kakimu.",
+              "Jawabannya adalah...",
+            ],
             answer: "kaki",
           },
           {
-            id: 46,
-            cat: "Anagram (Inggris)",
-            diff: "Sulit",
             question:
-              "Kata 5 huruf. Dimakan. Buang 1 huruf jadi energi (heat). Buang 2 jadi butuh hidup (eat). Acak 3 akhir jadi minuman (tea).",
-            hints: ["Kata Inggris 5 huruf.", "Biji-bijian.", "WHEAT."],
+              "Aku adalah sebuah kata dari 5 huruf. Orang-orang memakanku. Jika kamu membuang huruf pertamaku, aku menjadi bentuk energi. Jika kamu membuang dua huruf pertamaku, aku dibutuhkan untuk hidup. Jika kamu mengacak tiga huruf terakhirku, aku adalah minuman. Kata apakah aku?",
+            hints: [
+              "Kata 5 huruf yang bisa dimakan: WHEAT (gandum).",
+              "Buang W, menjadi HEAT (panas, energi).",
+              "Buang WH, menjadi EAT (makan, dibutuhkan untuk hidup).",
+              "Tiga huruf terakhir adalah EAT. Acak menjadi TEA (teh, minuman).",
+              "Jawabannya dalam bahasa Inggris.",
+            ],
             answer: "wheat",
           },
           {
-            id: 47,
-            cat: "Pakaian",
-            diff: "Mudah",
             question:
-              "Apa yang punya ibu jari dan empat jari tapi bukan tangan?",
+              "Apa yang memiliki ibu jari dan empat jari tetapi bukan tangan?",
             hints: [
-              "Bikin hangat.",
-              "Dipakai di tangan.",
-              "Menutupi jari terpisah.",
+              "Aku adalah pakaian.",
+              "Aku membuatmu tetap hangat di musim dingin.",
+              "Aku dipakai di tanganmu.",
+              "Aku menutupi setiap jari secara terpisah.",
+              "Aku adalah sebuah...",
             ],
             answer: "sarung tangan",
           },
           {
-            id: 48,
-            cat: "Identitas",
-            diff: "Sedang",
-            question: "Apa milikmu tapi lebih sering dipakai orang lain?",
-            hints: ["Sejak lahir.", "Identitas verbal.", "Untuk memanggilmu."],
+            question:
+              "Apa yang menjadi milikmu tetapi lebih sering digunakan oleh orang lain?",
+            hints: [
+              "Setiap orang memilikinya.",
+              "Kamu mendapatkannya saat lahir.",
+              "Orang lain mengucapkannya untuk memanggilmu.",
+              "Itu adalah identitas verbalmu.",
+              "Itu adalah...",
+            ],
             answer: "namamu",
           },
           {
-            id: 49,
-            cat: "Permainan Kata",
-            diff: "Sulit",
             question:
-              "Apa di tengah bulan Maret dan April yang tak ada di awal/akhir bulan apapun?",
-            hints: ["Lihat ejaan.", "Huruf di tengah kata.", "Bukan tanggal."],
+              "Apa yang bisa kamu temukan di tengah-tengah bulan Maret dan April yang tidak dapat ditemukan di awal atau akhir bulan mana pun?",
+            hints: [
+              "Jawabannya tersembunyi dalam kata-kata itu sendiri.",
+              "Ini bukan tentang tanggal atau peristiwa.",
+              "Lihatlah ejaan 'Maret' dan 'April'.",
+              "Huruf apa yang ada di tengah-tengah kata-kata itu?",
+              "Ini adalah huruf 'R'.",
+            ],
             answer: "huruf r",
           },
         ];
 
-        // --- SISTEM SUARA & TEMA ---
-        let audioCtx = null;
-        let isMuted = localStorage.getItem("pm_muted") === "true";
-        let isDarkMode = localStorage.getItem("pm_darkmode") === "true";
-
-        const soundBtn = document.getElementById("sound-toggle-btn");
-        const themeBtn = document.getElementById("theme-toggle-btn");
-        const themeMeta = document.getElementById("theme-color-meta");
-
-        function toggleSound() {
-          isMuted = !isMuted;
-          localStorage.setItem("pm_muted", isMuted);
-          soundBtn.textContent = isMuted ? "🔇" : "🔊";
-        }
-
-        function applyTheme() {
-          if (isDarkMode) {
-            document.body.classList.add("dark-mode");
-            themeMeta.content = "#121212";
-          } else {
-            document.body.classList.remove("dark-mode");
-            themeMeta.content = "#f4f1ea";
-          }
-          themeBtn.textContent = isDarkMode ? "☀️" : "🌙";
-        }
-
-        function toggleTheme() {
-          isDarkMode = !isDarkMode;
-          localStorage.setItem("pm_darkmode", isDarkMode);
-          applyTheme();
-        }
-
-        soundBtn.addEventListener("click", toggleSound);
-        themeBtn.addEventListener("click", toggleTheme);
-        soundBtn.textContent = isMuted ? "🔇" : "🔊";
-        applyTheme();
-
-        function initAudio() {
-          if (audioCtx || isMuted) return;
-          try {
-            audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-          } catch (e) {}
-        }
-
-        function playKeySound() {
-          if (isMuted || !audioCtx || audioCtx.state !== "running") return;
-          const osc = audioCtx.createOscillator();
-          const gain = audioCtx.createGain();
-          osc.connect(gain);
-          gain.connect(audioCtx.destination);
-
-          // Efek suara yang lebih berkesan retro/ketik
-          osc.type = "square";
-          osc.frequency.setValueAtTime(
-            150 + Math.random() * 20,
-            audioCtx.currentTime,
-          );
-          gain.gain.setValueAtTime(0.08, audioCtx.currentTime);
-          gain.gain.exponentialRampToValueAtTime(
-            0.0001,
-            audioCtx.currentTime + 0.05,
-          );
-          osc.start(audioCtx.currentTime);
-          osc.stop(audioCtx.currentTime + 0.05);
-        }
-
-        // --- MANAJEMEN STATE & PROGRESS ---
+        // --- GAME STATE ---
         let state = {
           currentPuzzleIndex: 0,
           hintsUsed: 0,
@@ -1457,126 +1099,38 @@
           userData: {
             lastPlayedDate: null,
             streak: 0,
-            totalScore: 0,
             completedDays: {},
-            history: {},
-            achievements: [],
           },
         };
 
-        let countdownInterval = null,
-          typingInterval = null;
+        let countdownInterval = null;
+        let typingInterval = null;
 
-        const el = {
-          counter: document.getElementById("puzzle-counter"),
-          question: document.getElementById("puzzle-question"),
-          input: document.getElementById("answer-input"),
-          submitBtn: document.getElementById("submit-button"),
-          hintBtn: document.getElementById("hint-button"),
-          nextBtn: document.getElementById("next-puzzle-button"),
-          feedback: document.getElementById("feedback-area"),
-          badges: document.getElementById("puzzle-badges"),
-          hintsArea: document.getElementById("hints-area"),
-          hints: [1, 2, 3].map((i) => document.getElementById(`hint-${i}`)),
-          weeklyScore: document.getElementById("weekly-score"),
-          streak: document.getElementById("streak"),
-          dailyScore: document.getElementById("daily-score"),
-          endModal: document.getElementById("end-modal"),
-          recapGrid: document.getElementById("recap-grid"),
-          endMessage: document.getElementById("end-message"),
-          shareBtn: document.getElementById("share-button"),
-          countdown: document.getElementById("countdown-timer"),
-        };
-
-        // --- ALGORITMA SHUFFLE ---
-        function mulberry32(a) {
-          return function () {
-            var t = (a += 0x6d2b79f5);
-            t = Math.imul(t ^ (t >>> 15), t | 1);
-            t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
-            return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
-          };
-        }
-        function getSeed(dateStr) {
-          return parseInt(dateStr.replace(/-/g, ""), 10);
-        }
-
-        function getTodaysPuzzles() {
-          const today = getTodayDateStr();
-          const rng = mulberry32(getSeed(today));
-
-          let available = puzzlesDb.map((p) => {
-            const lastSeen = state.userData.history[p.id] || "2000-01-01";
-            return { ...p, lastSeenValue: new Date(lastSeen).getTime() };
-          });
-
-          available.sort(() => rng() - 0.5);
-          available.sort((a, b) => a.lastSeenValue - b.lastSeenValue);
-
-          let candidates = available.slice(0, 15);
-          candidates.sort(() => rng() - 0.5);
-
-          return candidates.slice(0, 5);
-        }
-
-        // --- FUZZY MATCH LOGIC ---
-        function normalizeStr(s) {
-          return s.toLowerCase().replace(/[^a-z0-9]/g, "");
-        }
-        function levenshtein(a, b) {
-          const matrix = [];
-          for (let i = 0; i <= b.length; i++) matrix[i] = [i];
-          for (let j = 0; j <= a.length; j++) matrix[0][j] = j;
-          for (let i = 1; i <= b.length; i++) {
-            for (let j = 1; j <= a.length; j++) {
-              if (b.charAt(i - 1) == a.charAt(j - 1)) {
-                matrix[i][j] = matrix[i - 1][j - 1];
-              } else {
-                matrix[i][j] = Math.min(
-                  matrix[i - 1][j - 1] + 1,
-                  Math.min(matrix[i][j - 1] + 1, matrix[i - 1][j] + 1),
-                );
-              }
-            }
-          }
-          return matrix[b.length][a.length];
-        }
-        function checkAnswer(userInput, correctAnswer) {
-          let normIn = normalizeStr(userInput);
-          let normAns = normalizeStr(correctAnswer);
-          if (normIn === normAns) return true;
-          if (normAns.length > 5 && normIn.includes(normAns)) return true;
-          let tolerance = normAns.length <= 5 ? 1 : 2;
-          return levenshtein(normIn, normAns) <= tolerance;
-        }
-
-        // --- CORE GAMEPLAY ---
+        // --- CORE FUNCTIONS ---
         function init() {
           loadProgress();
-          const todayStr = getTodayDateStr();
+          const todayStr = getTodayDateString();
 
           if (
             state.userData.completedDays[todayStr] &&
             state.userData.completedDays[todayStr].length === 5
           ) {
-            showEndModal();
+            displayEndOfDayMessage(true);
           } else {
             startNewDay();
           }
           updateStatsUI();
+          setupEventListeners();
         }
 
         function startNewDay() {
-          const todayStr = getTodayDateStr();
-          const yesterdayStr = getYesterdayDateStr();
-
+          const yesterdayStr = getYesterdayDateString();
           if (
-            !state.userData.completedDays[yesterdayStr] &&
-            state.userData.lastPlayedDate !== todayStr
+            !state.userData.completedDays[yesterdayStr] ||
+            state.userData.completedDays[yesterdayStr].length < 5
           ) {
             state.userData.streak = 0;
           }
-
           state.dailyPuzzles = getTodaysPuzzles();
           state.currentPuzzleIndex = 0;
           state.dailyResults = [];
@@ -1584,166 +1138,186 @@
           saveProgress();
         }
 
-        function loadPuzzle(index) {
-          const p = state.dailyPuzzles[index];
-          resetUI();
-          state.currentPuzzleScore = 100;
-          state.hintsUsed = 0;
-
-          el.counter.textContent = `Kasus #${index + 1} // ${todayIndo()}`;
-          el.badges.innerHTML = `
-            <span class="badge badge-cat">[ ${p.cat} ]</span>
-            <span class="badge badge-${p.diff === "Mudah" ? "easy" : p.diff === "Sedang" ? "med" : "hard"}">[ LEVEL: ${p.diff} ]</span>
-          `;
-
-          typeWriter(p.question);
-          updateStatsUI();
-        }
-
         function typeWriter(text) {
           if (typingInterval) clearInterval(typingInterval);
+
           let i = 0;
-          el.question.innerHTML = '<span class="typing-cursor"></span>';
+          puzzleQuestionEl.innerHTML = '<span class="typing-cursor"></span>';
           const textNode = document.createTextNode("");
-          el.question.prepend(textNode);
+          puzzleQuestionEl.prepend(textNode);
+          const cursor = puzzleQuestionEl.querySelector(".typing-cursor");
 
           typingInterval = setInterval(() => {
             if (i < text.length) {
-              textNode.nodeValue += text.charAt(i++);
+              textNode.nodeValue += text.charAt(i);
+              i++;
               playKeySound();
             } else {
               clearInterval(typingInterval);
-              let cur = el.question.querySelector(".typing-cursor");
-              if (cur) cur.style.animation = "none";
+              if (cursor) cursor.style.animation = "none"; // Stop blinking
             }
-          }, 35);
+          }, 50); // Typing speed
+        }
+
+        function loadPuzzle(index) {
+          const puzzle = state.dailyPuzzles[index];
+          if (!puzzle) {
+            endDay();
+            return;
+          }
+
+          resetPuzzleUI();
+          state.currentPuzzleScore = 100;
+          state.hintsUsed = 0;
+
+          puzzleCounterEl.textContent = `Misteri ${index + 1} dari 5`;
+          typeWriter(puzzle.question);
+
+          updateStatsUI();
         }
 
         function handleGuess() {
-          const userAns = el.input.value.trim();
-          if (!userAns) return;
+          const userAnswer = answerInputEl.value.trim().toLowerCase();
+          if (!userAnswer) return;
 
-          el.input.blur();
+          const correctAnswer =
+            state.dailyPuzzles[state.currentPuzzleIndex].answer.toLowerCase();
 
-          const isCorrect = checkAnswer(
-            userAns,
-            state.dailyPuzzles[state.currentPuzzleIndex].answer,
-          );
-
-          if (isCorrect) {
-            el.feedback.textContent = "> Deduksi Tepat! Misteri terpecahkan.";
-            el.feedback.className = "success";
+          if (userAnswer === correctAnswer) {
+            feedbackAreaEl.textContent = "Jawaban Benar! Misteri terpecahkan.";
+            feedbackAreaEl.className = "success";
             endCurrentPuzzle(true);
           } else {
-            el.feedback.textContent = "> Analisis keliru. Bukti tidak cocok.";
-            el.feedback.className = "error";
-            state.currentPuzzleScore = Math.max(
-              0,
-              state.currentPuzzleScore - 10,
-            );
+            feedbackAreaEl.textContent =
+              "Jawaban Salah. Coba lagi atau minta petunjuk.";
+            feedbackAreaEl.className = "error";
+            state.currentPuzzleScore -= 5;
             updateStatsUI();
-            el.input.classList.add("shake");
-            setTimeout(() => el.input.classList.remove("shake"), 400);
           }
         }
 
-        function useHint() {
-          if (state.hintsUsed >= 3) return;
-          const p = state.dailyPuzzles[state.currentPuzzleIndex];
-
-          el.hints[state.hintsUsed].innerHTML =
-            `<strong>> CLUE ${state.hintsUsed + 1}:</strong> ${p.hints[state.hintsUsed]}`;
-          el.hints[state.hintsUsed].style.display = "block";
+        function handleHintRequest() {
+          if (state.hintsUsed >= 5) return;
 
           state.hintsUsed++;
-          state.currentPuzzleScore = Math.max(0, state.currentPuzzleScore - 15);
+          state.currentPuzzleScore -= 15;
+          showHint(state.hintsUsed - 1);
           updateStatsUI();
 
-          if (state.hintsUsed >= 3) el.hintBtn.disabled = true;
+          if (state.hintsUsed >= 5) {
+            hintButtonEl.disabled = true;
+          }
         }
 
         function endCurrentPuzzle(solved) {
-          const p = state.dailyPuzzles[state.currentPuzzleIndex];
+          const puzzleData = state.dailyPuzzles[state.currentPuzzleIndex];
+
           if (!solved) {
             state.currentPuzzleScore = 0;
-            el.feedback.innerHTML = `> WAKTU HABIS! Fakta sesungguhnya: <strong>${p.answer}</strong>`;
+            feedbackAreaEl.innerHTML = `Waktu habis! Jawaban yang benar adalah: <strong>${puzzleData.answer}</strong>`;
           }
 
-          state.userData.history[p.id] = getTodayDateStr();
-
           state.dailyResults.push({
-            id: p.id,
-            question: p.question,
-            answer: p.answer,
-            score: state.currentPuzzleScore,
+            question: puzzleData.question,
+            answer: puzzleData.answer,
+            score: Math.max(0, state.currentPuzzleScore),
             solved: solved,
-            hints: state.hintsUsed,
           });
 
-          el.submitBtn.disabled = true;
-          el.hintBtn.disabled = true;
-          el.input.disabled = true;
-          el.nextBtn.style.display = "inline-block";
+          submitButtonEl.disabled = true;
+          hintButtonEl.disabled = true;
+          answerInputEl.disabled = true;
+          nextPuzzleButtonEl.style.display = "inline-block";
 
-          if (state.currentPuzzleIndex === 4)
-            el.nextBtn.textContent = "Tutup Berkas";
+          if (state.currentPuzzleIndex >= 4) {
+            nextPuzzleButtonEl.textContent = "Lihat Hasil Akhir";
+          }
+        }
+
+        function handleNextPuzzle() {
+          state.currentPuzzleIndex++;
+          if (state.currentPuzzleIndex < 5) {
+            loadPuzzle(state.currentPuzzleIndex);
+          } else {
+            endDay();
+          }
         }
 
         function endDay() {
-          const today = getTodayDateStr();
-          state.userData.completedDays[today] = state.dailyResults;
+          const todayStr = getTodayDateString();
+          state.userData.completedDays[todayStr] = state.dailyResults;
 
-          const solvedAny = state.dailyResults.some((r) => r.solved);
-          if (solvedAny && state.userData.lastPlayedDate !== today) {
+          const allSolved = state.dailyResults.every((r) => r.solved);
+          if (allSolved) {
             state.userData.streak++;
+          } else {
+            state.userData.streak = 0;
           }
 
-          state.userData.totalScore += state.dailyResults.reduce(
-            (sum, r) => sum + r.score,
-            0,
-          );
-          state.userData.lastPlayedDate = today;
-
-          checkAchievements();
+          state.userData.lastPlayedDate = todayStr;
           saveProgress();
-          showEndModal();
+          displayEndOfDayMessage(false);
         }
 
-        // --- END OF DAY & SHARE ---
-        function showEndModal() {
-          const today = getTodayDateStr();
-          const results = state.userData.completedDays[today];
+        // --- UI FUNCTIONS ---
+        function resetPuzzleUI() {
+          feedbackAreaEl.textContent = "";
+          feedbackAreaEl.className = "";
+          answerInputEl.value = "";
+          answerInputEl.disabled = false;
+          submitButtonEl.disabled = false;
+          hintButtonEl.disabled = false;
+          nextPuzzleButtonEl.style.display = "none";
+          hintElements.forEach((h) => (h.style.display = "none"));
+          comebackMessageEl.style.display = "none";
+          countdownTimerEl.style.display = "none";
+          gameControlsEl.style.display = "block";
+          hintsAreaEl.style.display = "block";
+        }
+
+        function showHint(hintIndex) {
+          const puzzle = state.dailyPuzzles[state.currentPuzzleIndex];
+          if (hintIndex < hintElements.length && puzzle.hints[hintIndex]) {
+            hintElements[hintIndex].textContent = `Petunjuk ${hintIndex + 1}: ${
+              puzzle.hints[hintIndex]
+            }`;
+            hintElements[hintIndex].style.display = "block";
+          }
+        }
+
+        function updateStatsUI() {
+          weeklyScoreEl.textContent = calculateWeeklyScore();
+          streakEl.textContent = state.userData.streak;
+          dailyScoreEl.textContent = Math.max(0, state.currentPuzzleScore);
+        }
+
+        function displayEndOfDayMessage(isPageLoad) {
+          const todayStr = getTodayDateString();
+          const results = state.userData.completedDays[todayStr];
           if (!results) return;
 
-          document.getElementById("game-controls").style.display = "none";
-          el.hintsArea.style.display = "none";
-          el.counter.textContent = "Investigasi Ditutup";
+          const totalScore = results.reduce((sum, r) => sum + r.score, 0);
+          const puzzlesSolved = results.filter((r) => r.solved).length;
+
+          comebackMessageEl.innerHTML = `Sesi hari ini selesai! Kamu menyelesaikan ${puzzlesSolved} dari 5 misteri dengan total skor ${totalScore}.<br>Kembali lagi besok untuk tantangan baru!`;
+          comebackMessageEl.style.display = "block";
+
+          gameControlsEl.style.display = "none";
+          hintsAreaEl.style.display = "none";
+          puzzleCounterEl.textContent = "Kasus Hari Ini Ditutup";
+
           if (typingInterval) clearInterval(typingInterval);
-          el.question.innerHTML =
-            "<span style='font-style:italic; color:var(--secondary-text-color)'>Semua fakta telah dikumpulkan dan diarsipkan.</span>";
+          puzzleQuestionEl.textContent =
+            "Semua misteri telah terungkap atau waktu telah habis.";
 
-          el.recapGrid.innerHTML = "";
-          let totalScore = 0;
-          results.forEach((r) => {
-            totalScore += r.score;
-            let box = document.createElement("div");
-            box.className =
-              "recap-box " +
-              (r.score == 100
-                ? "box-correct"
-                : r.score > 0
-                  ? "box-hint"
-                  : "box-wrong");
-            box.textContent = r.score;
-            el.recapGrid.appendChild(box);
-          });
+          startCountdown();
+        }
 
-          el.endMessage.innerHTML = `Nilai Investigasi: <strong>${totalScore}</strong><br>Konsistensi Bertugas: 🔥 ${state.userData.streak} Hari`;
-          el.endModal.style.display = "block";
-
-          el.shareBtn.onclick = () => shareResult(results, totalScore);
-
-          if (countdownInterval) clearInterval(countdownInterval);
+        function startCountdown() {
+          countdownTimerEl.style.display = "block";
+          if (countdownInterval) {
+            clearInterval(countdownInterval);
+          }
           countdownInterval = setInterval(() => {
             const now = new Date();
             const tomorrow = new Date(
@@ -1752,205 +1326,144 @@
               now.getDate() + 1,
             );
             const diff = tomorrow - now;
-            el.countdown.textContent = `BERKAS BARU TIBA: ${String(Math.floor(diff / 3.6e6)).padStart(2, "0")}:${String(Math.floor((diff % 3.6e6) / 6e4)).padStart(2, "0")}:${String(Math.floor((diff % 6e4) / 1000)).padStart(2, "0")}`;
+            const hours = Math.floor(diff / 3.6e6);
+            const minutes = Math.floor((diff % 3.6e6) / 6e4);
+            const seconds = Math.floor((diff % 6e4) / 1000);
+            countdownTimerEl.textContent = `Sesi berikutnya dalam: ${String(
+              hours,
+            ).padStart(2, "0")}:${String(minutes).padStart(2, "0")}:${String(
+              seconds,
+            ).padStart(2, "0")}`;
           }, 1000);
         }
 
-        function shareResult(results, score) {
-          const dateStr = new Date().toLocaleDateString("id-ID", {
-            day: "numeric",
-            month: "short",
-            year: "numeric",
-          });
-          let gridStr = results
-            .map((r) => (r.score == 100 ? "🟩" : r.score > 0 ? "🟨" : "🟥"))
-            .join("");
+        function showArchive() {
+          archiveListEl.innerHTML = "";
+          const completed = state.userData.completedDays;
+          const sortedDates = Object.keys(completed).sort(
+            (a, b) => new Date(b) - new Date(a),
+          );
 
-          const text = `Misteri Harian - ${dateStr}\n${gridStr}\nSkor: ${score} | 🔥 Streak: ${state.userData.streak}\nMainkan sekarang!`;
-
-          if (navigator.share) {
-            navigator
-              .share({ title: "Misteri Harian", text: text })
-              .catch(console.error);
+          if (sortedDates.length === 0) {
+            archiveListEl.innerHTML =
+              "<li>Belum ada data untuk ditampilkan.</li>";
           } else {
-            navigator.clipboard.writeText(text).then(() => {
-              const prev = el.shareBtn.innerHTML;
-              el.shareBtn.innerHTML = "Tersalin! ✅";
-              setTimeout(() => (el.shareBtn.innerHTML = prev), 2000);
+            sortedDates.forEach((date) => {
+              const results = completed[date];
+              const totalScore = results.reduce((sum, r) => sum + r.score, 0);
+              const dayDiv = document.createElement("div");
+              dayDiv.className = "archive-day";
+
+              const header = document.createElement("div");
+              header.className = "archive-day-header";
+              header.textContent = `${new Date(date).toLocaleDateString(
+                "id-ID",
+                {
+                  weekday: "long",
+                  day: "numeric",
+                  month: "long",
+                  year: "numeric",
+                },
+              )} - Total Skor: ${totalScore}`;
+              dayDiv.appendChild(header);
+
+              results.forEach((data, index) => {
+                const puzzleDiv = document.createElement("div");
+                puzzleDiv.className = "archive-puzzle";
+                puzzleDiv.innerHTML = `
+                                <div class="archive-question">#${index + 1}: ${
+                                  data.question
+                                } (Skor: ${data.score})</div>
+                                <div class="archive-answer">Jawaban: ${
+                                  data.answer
+                                }</div>
+                            `;
+                dayDiv.appendChild(puzzleDiv);
+              });
+              archiveListEl.appendChild(dayDiv);
             });
+          }
+          archiveModal.style.display = "block";
+        }
+
+        // --- HELPER & DATA FUNCTIONS ---
+        function loadProgress() {
+          const savedData = localStorage.getItem("puzzleMisteriUserData_v2");
+          if (savedData) {
+            state.userData = JSON.parse(savedData);
           }
         }
 
-        // --- ACHIEVEMENTS ---
-        const achList = [
-          {
-            id: "first_blood",
-            icon: "🕵️",
-            title: "Rookie",
-            desc: "Selesaikan 1 hari bertugas.",
-          },
-          {
-            id: "streak_3",
-            icon: "🔥",
-            title: "Darah Anjing Pelacak",
-            desc: "Bertugas 3 hari berturut-turut.",
-          },
-          {
-            id: "perfect",
-            icon: "🎯",
-            title: "Deduksi Sempurna",
-            desc: "Raih skor 500 tanpa cacat.",
-          },
-        ];
-
-        function checkAchievements() {
-          const achieved = state.userData.achievements || [];
-          const todayRes = state.userData.completedDays[getTodayDateStr()];
-          let score = todayRes ? todayRes.reduce((a, b) => a + b.score, 0) : 0;
-
-          if (
-            !achieved.includes("first_blood") &&
-            Object.keys(state.userData.completedDays).length >= 1
-          )
-            achieved.push("first_blood");
-          if (!achieved.includes("streak_3") && state.userData.streak >= 3)
-            achieved.push("streak_3");
-          if (!achieved.includes("perfect") && score === 500)
-            achieved.push("perfect");
-
-          state.userData.achievements = achieved;
-        }
-
-        function showAchievements() {
-          const list = document.getElementById("achievements-list");
-          list.innerHTML = "";
-          const myAch = state.userData.achievements || [];
-          achList.forEach((a) => {
-            const isUnlocked = myAch.includes(a.id);
-            list.innerHTML += `
-              <div class="achievement-card ${isUnlocked ? "unlocked" : ""}">
-                <div class="ach-icon">${a.icon}</div>
-                <div class="ach-text">
-                  <h3>${a.title}</h3>
-                  <p>${a.desc}</p>
-                </div>
-              </div>
-            `;
-          });
-          document.getElementById("achievements-modal").style.display = "block";
-        }
-
-        // --- UTILS ---
-        function resetUI() {
-          el.feedback.textContent = "";
-          el.input.value = "";
-          el.input.disabled = false;
-          el.submitBtn.disabled = false;
-          el.hintBtn.disabled = false;
-          el.nextBtn.style.display = "none";
-          el.hints.forEach((h) => (h.style.display = "none"));
-          setTimeout(() => {
-            if (window.innerWidth > 600) el.input.focus();
-          }, 100);
-        }
-        function updateStatsUI() {
-          el.weeklyScore.textContent = state.userData.totalScore;
-          el.streak.textContent = state.userData.streak;
-          el.dailyScore.textContent = Math.max(0, state.currentPuzzleScore);
-        }
-        function loadProgress() {
-          const data = localStorage.getItem("puzzleMisteriUserData_v3");
-          if (data) state.userData = JSON.parse(data);
-          if (!state.userData.history) state.userData.history = {};
-          if (!state.userData.achievements) state.userData.achievements = [];
-        }
         function saveProgress() {
           localStorage.setItem(
-            "puzzleMisteriUserData_v3",
+            "puzzleMisteriUserData_v2",
             JSON.stringify(state.userData),
           );
         }
-        function getTodayDateStr() {
+
+        function calculateWeeklyScore() {
+          let totalScore = 0;
+          const today = new Date();
+          for (let i = 0; i < 7; i++) {
+            const date = new Date(today);
+            date.setDate(today.getDate() - i);
+            const dateStr = date.toISOString().split("T")[0];
+            if (state.userData.completedDays[dateStr]) {
+              totalScore += state.userData.completedDays[dateStr].reduce(
+                (sum, r) => sum + r.score,
+                0,
+              );
+            }
+          }
+          return totalScore;
+        }
+
+        function getTodaysPuzzles() {
+          const todayStr = getTodayDateString();
+          const seed = dateToSeed(todayStr);
+          const shuffled = [...puzzles].sort(
+            (a, b) =>
+              0.5 -
+              seededRandom(seed + puzzles.indexOf(a) * puzzles.indexOf(b)),
+          );
+          return shuffled.slice(0, 5);
+        }
+
+        function dateToSeed(dateStr) {
+          return parseInt(dateStr.replace(/-/g, ""), 10);
+        }
+
+        function seededRandom(seed) {
+          var x = Math.sin(seed) * 10000;
+          return x - Math.floor(x);
+        }
+
+        function getTodayDateString() {
           return new Date().toISOString().split("T")[0];
         }
-        function getYesterdayDateStr() {
-          const y = new Date();
-          y.setDate(y.getDate() - 1);
-          return y.toISOString().split("T")[0];
-        }
-        function todayIndo() {
-          return new Date()
-            .toLocaleDateString("id-ID", {
-              day: "numeric",
-              month: "short",
-              year: "numeric",
-            })
-            .toUpperCase();
+        function getYesterdayDateString() {
+          const yesterday = new Date();
+          yesterday.setDate(yesterday.getDate() - 1);
+          return yesterday.toISOString().split("T")[0];
         }
 
-        // --- EVENT LISTENERS BINDING ---
-        el.submitBtn.addEventListener("click", handleGuess);
-        el.hintBtn.addEventListener("click", useHint);
-        el.nextBtn.addEventListener("click", () => {
-          state.currentPuzzleIndex++;
-          if (state.currentPuzzleIndex < 5)
-            loadPuzzle(state.currentPuzzleIndex);
-          else endDay();
-        });
-        el.input.addEventListener("keypress", (e) => {
-          if (e.key === "Enter") handleGuess();
-        });
-
-        document
-          .getElementById("achievements-btn")
-          .addEventListener("click", showAchievements);
-        document
-          .getElementById("features-btn")
-          .addEventListener(
-            "click",
-            () =>
-              (document.getElementById("roadmap-modal").style.display =
-                "block"),
-          );
-
-        document.body.addEventListener(
-          "click",
-          () => {
-            initAudio();
-            if (audioCtx && audioCtx.state === "suspended" && !isMuted)
-              audioCtx.resume();
-          },
-          { once: true },
-        );
-
-        // Archive Feature
-        document
-          .getElementById("archive-button")
-          .addEventListener("click", () => {
-            const list = document.getElementById("archive-list");
-            list.innerHTML = "";
-            const dates = Object.keys(state.userData.completedDays).sort(
-              (a, b) => new Date(b) - new Date(a),
-            );
-            if (dates.length === 0) list.innerHTML = "<p>Berkas kosong.</p>";
-            else {
-              dates.forEach((d) => {
-                const res = state.userData.completedDays[d];
-                let dDiv = document.createElement("div");
-                dDiv.style.marginBottom = "20px";
-                dDiv.style.padding = "20px";
-                dDiv.style.border = "2px solid var(--border-color)";
-                dDiv.style.backgroundColor = "var(--bg-color)";
-                dDiv.style.boxShadow = "4px 4px 0px var(--border-color)";
-                dDiv.innerHTML = `<strong style="font-family: var(--font-ui); font-size: 1.1em;">[ BERKAS: ${new Date(d).toLocaleDateString("id").toUpperCase()} ]</strong><br><span style="font-size: 0.8em; color: var(--secondary-text-color);">NILAI: ${res.reduce((a, b) => a + b.score, 0)}</span><br><br>`;
-                res.forEach((r, i) => {
-                  dDiv.innerHTML += `<div style="font-family: var(--font-text); font-size: 1.1em; margin-bottom: 8px;"><strong>KASUS #${i + 1}:</strong> ${r.answer} <span style="font-family: var(--font-ui)">${r.score == 100 ? "[OK]" : "[FAIL]"}</span></div>`;
-                });
-                list.appendChild(dDiv);
-              });
-            }
-            document.getElementById("archive-modal").style.display = "block";
+        // --- EVENT LISTENERS ---
+        function setupEventListeners() {
+          submitButtonEl.addEventListener("click", handleGuess);
+          hintButtonEl.addEventListener("click", handleHintRequest);
+          nextPuzzleButtonEl.addEventListener("click", handleNextPuzzle);
+          answerInputEl.addEventListener("keypress", (e) => {
+            if (e.key === "Enter") handleGuess();
           });
+          archiveButton.addEventListener("click", showArchive);
+          closeButton.addEventListener(
+            "click",
+            () => (archiveModal.style.display = "none"),
+          );
+          window.addEventListener("click", (e) => {
+            if (e.target == archiveModal) archiveModal.style.display = "none";
+          });
+        }
 
         init();
       });
